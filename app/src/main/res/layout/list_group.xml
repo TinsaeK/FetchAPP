@@ -4,7 +4,7 @@
     android:padding="8dp"
     android:background="@color/cardview_dark_background"
     android:layout_height="wrap_content">
-
+    <!--group of list ids-->
     <TextView
         android:id="@+id/lblHeader"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
