@@ -6,11 +6,11 @@
     android:background="@color/material_on_background_emphasis_medium"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <!--keep toolbar and logo at the level-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <!--Create a toolbar at the top of the page-->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:titleTextColor="@color/white" />
-
+        <!--add an logo to the toolbar-->
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="58dp"
