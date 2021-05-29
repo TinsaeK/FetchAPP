@@ -11,6 +11,9 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 
+/*****************************************************************
+ * alter abstract expanding list adapter class for current context
+ ****************************************************************/
 public class ExpandingListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> listDataHeader;
