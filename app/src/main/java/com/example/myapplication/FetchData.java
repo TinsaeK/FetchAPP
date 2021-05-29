@@ -19,14 +19,19 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
+/*
+ Class to retrieve, organize and present JSON ARRAY
+ */
 public class FetchData extends AsyncTask<Void,Void,Void> {
     String data="";
-    ArrayList<String> dataParsed=new ArrayList<>();
-    String singleParsed="";
+    String listid="";
     HashMap<String, List<String>> hmap = new HashMap<String, List<String>>();
     ExpandingListAdapter listAdapter;
     @Override
+    /*
+     * Reads JSON data from URL, sorts it and stores it into a grouped hashmap.
+     *
+     */
     protected Void doInBackground(Void... voids) {
         try {
             URL url = new URL("https://fetch-hiring.s3.amazonaws.com/hiring.json");
@@ -34,7 +39,7 @@ public class FetchData extends AsyncTask<Void,Void,Void> {
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
             String line= "";
-            while (line != null){
+            while (line != null){//read from URL and store into String
                 line = bufferedReader.readLine();
                 data=data+line;
             }
@@ -44,7 +49,10 @@ public class FetchData extends AsyncTask<Void,Void,Void> {
                 JA = new JSONArray(data);
                 List<JSONObject> myJsonArrayAsList = new ArrayList<JSONObject>();
                 for (int i = 0; i < JA.length(); i++)
-                    myJsonArrayAsList.add(JA.getJSONObject(i));
+                    myJsonArrayAsList.add(JA.getJSONObject(i));//organize JSONARRAY to List of JSONObjects
+                /****************************************
+                 * Sorts Data nameid
+                 ***************************************/
                 Collections.sort(myJsonArrayAsList, new Comparator<JSONObject>() {
                     @Override
                     public int compare(JSONObject a, JSONObject b) {
@@ -64,6 +72,9 @@ public class FetchData extends AsyncTask<Void,Void,Void> {
                         return compare;
                     }
                 });
+                /******************************
+                 * sort data by list id
+                 *****************************/
                 Collections.sort(myJsonArrayAsList, new Comparator<JSONObject>() {
                     @Override
                     public int compare(JSONObject jsonObjectA, JSONObject jsonObjectB) {
@@ -81,20 +92,25 @@ public class FetchData extends AsyncTask<Void,Void,Void> {
                         return compare;
                     }
                 });
+                /*******************************************
+                 * store JSON objects into hashmaps, with
+                 * ListID as the Key and a list of associated
+                 * names and ids as the values
+                 ******************************************/
                 for(int i=0; i<myJsonArrayAsList.size(); i++){
                     try {
 
                         JSONObject JO=(JSONObject) myJsonArrayAsList.get(i);
                         if(!JO.get("name").equals(null)&&!JO.get("name").equals("")) {
 
-                            singleParsed =  "List ID: " + JO.get("listId");
-                            if(hmap.get(singleParsed)!=null) {
-                                hmap.get(singleParsed).add("Name: " + JO.get("name") + "\n" + "ID: " + JO.get("id"));
+                            listid =  "List ID: " + JO.get("listId");
+                            if(hmap.get(listid)!=null) {
+                                hmap.get(listid).add("Name: " + JO.get("name") + "\n" + "ID: " + JO.get("id"));
                             }
                             else{
                                 List<String> temp=new ArrayList<String>();
                                 temp.add("Name: " + JO.get("name") + "\n" + "ID: " + JO.get("id"));
-                                hmap.put(singleParsed, temp);
+                                hmap.put(listid, temp);
                             }
 
                         }
@@ -117,6 +133,11 @@ public class FetchData extends AsyncTask<Void,Void,Void> {
     }
 
     @Override
+    /***************************
+     * organize data into
+     * expanding list format
+     * to run in mainactivity
+     ***************************/
     protected void onPostExecute(Void unused) {
         super.onPostExecute(unused);
         Set<String> keyset=hmap.keySet();
