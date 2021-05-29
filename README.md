@@ -11,6 +11,8 @@
     <br />
   </p>
 </p>
+## Installation
+Clone this repository and import into **Android Studio**
 <h3>About the Project</h3>
 The Project was built using Java on Android Studio. Here is a few screenshots of the output.
 <img src="list1.png">
