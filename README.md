@@ -7,7 +7,6 @@
   <h1 align="center">FetchApp</h1>
 
   <p align="center">
-    Fetch Rewards Coding Exercise
     <br />
   </p>
 </p>
