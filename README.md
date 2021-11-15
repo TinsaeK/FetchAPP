@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/TinsaeK/FetchApp">
-    <img src="ic_action_name.png" alt="Logo" width="50" height="50">
+    <img src="ic_action_name.png" alt="Logo" width="100" height="100">
   </a>
 
   <h1 align="center">FetchApp</h1>
