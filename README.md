@@ -15,7 +15,7 @@
   Clone this repository and import into <b>Android Studio</b>
   </br>
 <h3>About the Project</h3>
-<p>The Project fetches simple json data and displays it in a sorted expandable list based on id</p>
+<p>The Project fetches simple json data and displays it in a sorted expandable list based on id.</p>
 <p float="left">
 <img src="list1.png">
  <div></div>
