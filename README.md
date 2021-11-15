@@ -18,6 +18,7 @@
 The Project was built using Java on Android Studio. Here is a few screenshots of the output.
 <p float="left">
 <img src="list1.png">
+ <div></div>
 <img src="list2.png">
 </p>
 
